@@ -1,2 +1,1 @@
-print("Try the dev branch!")
-exit()
+print("I'm not ready yet!")
