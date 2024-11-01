@@ -1,2 +1,2 @@
-print("NO!")
+print("Try the dev branch!")
 exit()
