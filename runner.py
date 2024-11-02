@@ -21,9 +21,7 @@ def process_list(json_list):
     if json_list is not None:
         for index, item in enumerate(json_list, 1):
             print(f"Item {index}:")
-            for key, value in item.items():
-                print(f"  {key}: {value}")
-            print()
+            print(item)
 
 # Usage example
 json_string = '''
