@@ -23,12 +23,7 @@ def process_list(json_list):
 	if json_list is not None:
 		for index, item in enumerate(json_list, 1):
 			print(f"Item {index}:")
-			if isinstance(item, dict):
-				for key, value in item.items():
-					print(f"  {key}: {value}")
-			else:
-				print(f"  Value: {item}")
-			print()
+			print(f"  Value: {item}")
 json_string2 = '''
 ["apple", "banana", "cherry", "date"]
 '''
