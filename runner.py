@@ -28,9 +28,7 @@ def process_list(json_list):
 # Usage example
 json_string = '''
 [
-    {"name": "John Doe", "age": 30, "city": "New York"},
-    {"name": "Jane Smith", "age": 25, "city": "San Francisco"},
-    {"name": "Bob Johnson", "age": 35, "city": "Chicago"}
+    "Coming Soon!"
 ]
 '''
 
