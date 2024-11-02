@@ -27,6 +27,5 @@ def process_list(json_list):
 json_string2 = '''
 ["Hello!"]
 '''
-print("\nProcessing second JSON string (list of strings):")
 json_list2 = read_json_list(json_string2)
 process_list(json_list2)
