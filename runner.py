@@ -25,7 +25,7 @@ def process_list(json_list):
 			print(f"Item {index}:")
 			print(f"  Value: {item}")
 json_string2 = '''
-["apple", "banana", "cherry", "date"]
+["Hello!"]
 '''
 print("\nProcessing second JSON string (list of strings):")
 json_list2 = read_json_list(json_string2)
