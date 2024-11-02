@@ -1,33 +1,37 @@
 import json
 
-def read_json_list_from_string(json_string):
+def read_json_list(json_string):
 	try:
+		# Parse the JSON string
 		data = json.loads(json_string)
 		
+		# Check if the parsed data is a list
 		if isinstance(data, list):
 			print(f"Successfully parsed JSON list with {len(data)} items.")
 			return data
 		else:
 			print("Error: The JSON string does not contain a list at the top level.")
 			return None
-	except json.JSONDecodeError:
-		print("Error: Invalid JSON format in the string.")
+	except json.JSONDecodeError as e:
+		print(f"Error: Invalid JSON format in the string. {str(e)}")
 	except Exception as e:
-		print(f"An error occurred: {str(e)}")
+		print(f"An unexpected error occurred: {str(e)}")
 	
 	return None
 
 def process_list(json_list):
 	if json_list is not None:
-		
-
-
-# Usage example
-json_string = '''
-[
-	"Coming Soon!"
-]
+		for index, item in enumerate(json_list, 1):
+			print(f"Item {index}:")
+			if isinstance(item, dict):
+				for key, value in item.items():
+					print(f"  {key}: {value}")
+			else:
+				print(f"  Value: {item}")
+			print()
+json_string2 = '''
+["apple", "banana", "cherry", "date"]
 '''
-
-json_list = read_json_list_from_string(json_string)
-process_list(json_list)
+print("\nProcessing second JSON string (list of strings):")
+json_list2 = read_json_list(json_string2)
+process_list(json_list2)
