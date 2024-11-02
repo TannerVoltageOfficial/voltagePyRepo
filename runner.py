@@ -19,9 +19,7 @@ def read_json_list_from_string(json_string):
 
 def process_list(json_list):
     if json_list is not None:
-        for index, item in enumerate(json_list, 1):
-            print(f"Item {index}:")
-            print(item)
+        
 
 # Usage example
 json_string = '''
