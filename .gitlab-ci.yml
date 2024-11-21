@@ -12,3 +12,29 @@ build_windows_executable:
       - dist/installer-gui.exe
   tags:
     - windows
+
+build_linux_appimage:
+  stage: build
+  image: python:3.9-buster
+  before_script:
+    - apt-get update && apt-get install -y fuse libfuse2
+    - pip install pyinstaller
+    - wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+    - chmod +x appimagetool-x86_64.AppImage
+  script:
+    - mkdir -p AppDir/usr/bin AppDir/usr/share/applications AppDir/usr/share/icons/hicolor/256x256/apps
+    - pyinstaller --onefile --windowed installer-gui.py
+    - mv dist/installer-gui AppDir/usr/bin/
+    - echo "[Desktop Entry]
+      Name=Installer GUI
+      Exec=installer-gui
+      Icon=installer-gui
+      Type=Application
+      Categories=Utility;" > AppDir/usr/share/applications/installer-gui.desktop
+    - cp path/to/your/icon.png AppDir/usr/share/icons/hicolor/256x256/apps/installer-gui.png
+    - ./appimagetool-x86_64.AppImage AppDir
+  artifacts:
+    paths:
+      - Installer_GUI-x86_64.AppImage
+  tags:
+    - linux
