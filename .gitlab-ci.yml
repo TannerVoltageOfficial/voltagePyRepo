@@ -18,7 +18,7 @@ build_linux_appimage:
       Exec=installer-gui
       Icon=installer-gui
       Type=Application" > AppDir/usr/share/applications/installer-gui.desktop
--     cat << EOF > AppDir/usr/share/applications/installer-gui.desktop
+    - cat << EOF > AppDir/usr/share/applications/installer-gui.desktop
       [Desktop Entry]
       Name=Installer GUI
       Exec=installer-gui
