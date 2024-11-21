@@ -1,16 +1,6 @@
 stages:
   - build
 
-build_windows_executable:
-  stage: build
-  image: python:3.9-windowsservercore
-  script:
-    - pip install pyinstaller
-    - pyinstaller --onefile --windowed installer-gui.py
-  artifacts:
-    paths:
-      - dist/installer-gui.exe
-
 build_linux_appimage:
   stage: build
   image: python:3.9-buster
