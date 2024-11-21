@@ -10,8 +10,9 @@ response = requests.get(url)
 if response.status_code == 200:
     # Parse the JSON content
     data = json.loads(response.text)
-    
-    # Now you can work with the data
-    print(data[0])
+    try:
+        json.dump(data, f)
+    except Exception as e:
+        print(e)
 else:
     print(f"Failed to retrieve data. Status code: {response.status_code}")
