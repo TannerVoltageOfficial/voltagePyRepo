@@ -1,4 +1,8 @@
 {
     "name":"Pash",
-    "type":"utility"
+    "type":"utility",
+    "files":[
+        "main.py"
+    ],
+    "exec":1
 }
