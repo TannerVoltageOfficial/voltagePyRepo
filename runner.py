@@ -11,7 +11,7 @@ if response.status_code == 200:
     # Parse the JSON content
     data = json.loads(response.text)
     try:
-        json.dump(data, f)
+        print(data[0])
     except Exception as e:
         print(e)
 else:
