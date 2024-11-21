@@ -17,7 +17,7 @@ build_linux_appimage:
       Name=Installer GUI
       Exec=installer-gui
       Icon=installer-gui
-      Type=Application
+      Type=Application"
 
     - ./appimagetool-x86_64.AppImage AppDir
   artifacts:
