@@ -18,12 +18,15 @@ build_linux_appimage:
       Exec=installer-gui
       Icon=installer-gui
       Type=Application" > AppDir/usr/share/applications/installer-gui.desktop
-    - echo "[Desktop Entry]
+    - cat << EOF > AppDir/usr/share/applications/installer-gui.desktop
+      [Desktop Entry]
       Name=Installer GUI
       Exec=installer-gui
       Icon=installer-gui
       Type=Application
-      Categories=Utility;" > AppDir/usr/share/applications/installer-gui.desktop
+      Categories=Utility;
+      EOF
+
     - ./appimagetool-x86_64.AppImage AppDir
   artifacts:
     paths:
