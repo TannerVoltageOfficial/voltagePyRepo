@@ -10,8 +10,6 @@ build_windows_executable:
   artifacts:
     paths:
       - dist/installer-gui.exe
-  tags:
-    - windows
 
 build_linux_appimage:
   stage: build
@@ -36,5 +34,3 @@ build_linux_appimage:
   artifacts:
     paths:
       - Installer_GUI-x86_64.AppImage
-  tags:
-    - linux
