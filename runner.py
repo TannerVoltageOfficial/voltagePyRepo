@@ -12,6 +12,6 @@ if response.status_code == 200:
     data = json.loads(response.text)
     
     # Now you can work with the data
-    print(data)
+    print(data[1])
 else:
     print(f"Failed to retrieve data. Status code: {response.status_code}")
