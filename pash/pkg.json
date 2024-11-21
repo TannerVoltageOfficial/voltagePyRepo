@@ -4,5 +4,6 @@
     "files":[
         "main.py"
     ],
-    "exec":1
+    "exec":1,
+    "vernum":1
 }
