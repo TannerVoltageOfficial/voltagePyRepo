@@ -13,13 +13,6 @@ build_linux_appimage:
     - mkdir -p AppDir/usr/bin AppDir/usr/share/applications AppDir/usr/share/icons/hicolor/256x256/apps
     - pyinstaller --onefile --windowed installer-gui.py
     - mv dist/installer-gui AppDir/usr/bin/
-    - echo "[Desktop Entry]
-      Name=Installer GUI
-      Exec=installer-gui
-      Icon=installer-gui
-      Type=Application
-      Categories=Utility;" > AppDir/usr/share/applications/installer-gui.desktop
-    - cp path/to/your/icon.png AppDir/usr/share/icons/hicolor/256x256/apps/installer-gui.png
     - ./appimagetool-x86_64.AppImage AppDir
   artifacts:
     paths:
