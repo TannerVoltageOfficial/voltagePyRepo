@@ -16,13 +16,13 @@ build_linux_appimage:
     - mv dist/installer_gui AppDir/usr/bin/
     
     # Create desktop entry file using multi-echo
-    - |
-      echo "[Desktop Entry]" > AppDir/usr/share/applications/installer-gui.desktop
-      echo "Name=Installer GUI" >> AppDir/usr/share/applications/installer-gui.desktop
-      echo "Exec=installer_gui" >> AppDir/usr/share/applications/installer-gui.desktop
-      echo "Icon=system-software-install" >> AppDir/usr/share/applications/installer-gui.desktop
-      echo "Type=Application" >> AppDir/usr/share/applications/installer-gui.desktop
-      echo "Categories=Utility;" >> AppDir/usr/share/applications/installer-gui.desktop
+    - touch AppDir/usr/share/applications/installer-gui.desktop
+    - echo "[Desktop Entry]" > AppDir/usr/share/applications/installer-gui.desktop
+    -  echo "Name=Installer GUI" >> AppDir/usr/share/applications/installer-gui.desktop
+    -  echo "Exec=installer_gui" >> AppDir/usr/share/applications/installer-gui.desktop
+    -  echo "Icon=system-software-install" >> AppDir/usr/share/applications/installer-gui.desktop
+    -  echo "Type=Application" >> AppDir/usr/share/applications/installer-gui.desktop
+    -  echo "Categories=Utility;" >> AppDir/usr/share/applications/installer-gui.desktop
     
     # Create AppImage
     - ./appimagetool-x86_64.AppImage AppDir
