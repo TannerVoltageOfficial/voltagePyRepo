@@ -15,7 +15,7 @@ build_linux_appimage:
     - pyinstaller --onefile --windowed installer_gui.py
     - mv dist/installer_gui AppDir/usr/bin/
     
-    # Create desktop entry file using multi-echo
+    # Create desktop entry file using multi-echo and touch
     - touch AppDir/usr/share/applications/installer-gui.desktop
     - echo "[Desktop Entry]" > AppDir/usr/share/applications/installer-gui.desktop
     -  echo "Name=Installer GUI" >> AppDir/usr/share/applications/installer-gui.desktop
