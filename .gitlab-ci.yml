@@ -11,23 +11,24 @@ build_linux_appimage:
     # Prepare AppDir structure
     - mkdir -p AppDir/usr/bin AppDir/usr/share/applications AppDir/usr/share/icons/hicolor/256x256/apps
     
-    # Build the application (replace 'installer_gui.py' with the correct filename if different)
-    - pyinstaller --onefile --windowed your_actual_script_name.py
-    - mv dist/your_actual_script_name AppDir/usr/bin/
+    # Build the application
+    - pyinstaller --onefile --windowed installer_gui.py
+    - mv dist/installer_gui AppDir/usr/bin/
     
     # Create desktop entry file
     - |
-      cat << EOF > AppDir/usr/share/applications/your_app_name.desktop
+      cat << EOF > AppDir/usr/share/applications/installer-gui.desktop
       [Desktop Entry]
-      Name=Your App Name
-      Exec=your_actual_script_name
-      Icon=your_app_icon
+      Name=Installer GUI
+      Exec=installer_gui
+      Icon=system-software-install
       Type=Application
       Categories=Utility;
       EOF
     
     # Create AppImage
     - ./appimagetool-x86_64.AppImage AppDir
+    - mv *.AppImage ${APPIMAGE_NAME}
   artifacts:
     paths:
       - ${APPIMAGE_NAME}
