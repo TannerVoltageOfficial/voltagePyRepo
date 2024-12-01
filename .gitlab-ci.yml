@@ -1,6 +1,6 @@
 build_linux_appimage:
   stage: build
-  image: python:${PYTHON_VERSION}-buster
+  image: image: python:3.9-buster
   before_script:
     # Install dependencies
     - apt-get update && apt-get install -y fuse libfuse2
