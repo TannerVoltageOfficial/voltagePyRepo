@@ -19,16 +19,16 @@ build_linux_appimage:
     - mkdir -p AppDir/usr/bin AppDir/usr/share/applications AppDir/usr/share/icons/hicolor/256x256/apps
     
     # Build the application
-    - pyinstaller --onefile --windowed installer-gui.py
-    - mv dist/installer-gui AppDir/usr/bin/
+    - pyinstaller --onefile --windowed installer_gui.py
+    - mv dist/installer_gui AppDir/usr/bin/
     
     # Create desktop entry file
     - |
-      cat << EOF > AppDir/usr/share/applications/installer-gui.desktop
+      cat << EOF > AppDir/usr/share/applications/installer_gui.desktop
       [Desktop Entry]
       Name=Installer GUI
-      Exec=installer-gui
-      Icon=installer-gui
+      Exec=installer_gui
+      Icon=installer_gui
       Type=Application
       Categories=Utility;
       EOF
