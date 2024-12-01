@@ -1,7 +1,5 @@
 stages:
   - build
-  - test
-  - deploy
 
 variables:
   APPIMAGE_NAME: Installer_GUI-x86_64.AppImage
@@ -40,26 +38,3 @@ build_linux_appimage:
   artifacts:
     paths:
       - ${APPIMAGE_NAME}
-
-test_appimage:
-  stage: test
-  image: ubuntu:latest
-  script:
-    - chmod +x ${APPIMAGE_NAME}
-    - ./${APPIMAGE_NAME} --version || true  # Add a real test command if available
-  dependencies:
-    - build_linux_appimage
-
-deploy_appimage:
-  stage: deploy
-  image: alpine:latest
-  script:
-    - echo "Deploying ${APPIMAGE_NAME}"
-    # Add your deployment commands here, e.g.:
-    # - apt-get update && apt-get install -y curl
-    # - curl -T ${APPIMAGE_NAME} https://your-storage-or-release-url.com
-  dependencies:
-    - build_linux_appimage
-  only:
-    - main  # Only deploy on the main branch
-
