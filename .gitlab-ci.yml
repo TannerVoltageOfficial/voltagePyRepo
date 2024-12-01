@@ -1,10 +1,3 @@
-stages:
-  - build
-
-variables:
-  APPIMAGE_NAME: Installer_GUI-x86_64.AppImage
-  PYTHON_VERSION: "3.9"
-
 build_linux_appimage:
   stage: build
   image: python:${PYTHON_VERSION}-buster
@@ -18,17 +11,17 @@ build_linux_appimage:
     # Prepare AppDir structure
     - mkdir -p AppDir/usr/bin AppDir/usr/share/applications AppDir/usr/share/icons/hicolor/256x256/apps
     
-    # Build the application
-    - pyinstaller --onefile --windowed installer_gui.py
-    - mv dist/installer_gui AppDir/usr/bin/
+    # Build the application (replace 'installer_gui.py' with the correct filename if different)
+    - pyinstaller --onefile --windowed your_actual_script_name.py
+    - mv dist/your_actual_script_name AppDir/usr/bin/
     
     # Create desktop entry file
     - |
-      cat << EOF > AppDir/usr/share/applications/installer_gui.desktop
+      cat << EOF > AppDir/usr/share/applications/your_app_name.desktop
       [Desktop Entry]
-      Name=Installer GUI
-      Exec=installer_gui
-      Icon=installer_gui
+      Name=Your App Name
+      Exec=your_actual_script_name
+      Icon=your_app_icon
       Type=Application
       Categories=Utility;
       EOF
