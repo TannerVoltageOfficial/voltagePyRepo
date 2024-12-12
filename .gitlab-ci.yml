@@ -1,6 +1,6 @@
 build_linux_appimage:
   stage: build
-  image: python:${PYTHON_VERSION}-buster
+  image: python:3.9-buster
   before_script:
     # Install dependencies
     - apt-get update && apt-get install -y fuse libfuse2
@@ -15,7 +15,7 @@ build_linux_appimage:
     - pyinstaller --onefile --windowed installer_gui.py
     - mv dist/installer_gui AppDir/usr/bin/
     
-    # Create desktop entry file using multi-echo
+    # Create desktop entry file using multi-echo and touch
     - touch AppDir/usr/share/applications/installer-gui.desktop
     - echo "[Desktop Entry]" > AppDir/usr/share/applications/installer-gui.desktop
     -  echo "Name=Installer GUI" >> AppDir/usr/share/applications/installer-gui.desktop
