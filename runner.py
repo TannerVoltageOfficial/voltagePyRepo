@@ -9,7 +9,7 @@ def get_latest_release_info(repo_url, beta_flag_filepath=None):
     if beta_flag_filepath and os.path.exists(beta_flag_filepath):
         use_beta = True
 
-    if use_beta:  # Correctly use the use_beta flag here
+    if use_beta:
         try:
             commits_url = repo_url.replace("github.com", "api.github.com/repos") + "/commits"
             commits_response = requests.get(commits_url)
@@ -27,7 +27,7 @@ def get_latest_release_info(repo_url, beta_flag_filepath=None):
         except IndexError:
             print("Error: No commits found for beta.")
             return None
-    else: # If use_beta is False, get the release info
+    else:
         try:
             api_url = repo_url.replace("github.com", "api.github.com/repos") + "/releases/latest"
             response = requests.get(api_url)
@@ -55,11 +55,11 @@ def get_pkgs_json_from_release(release_info, repo_url, beta_flag_filepath=None):
     try:
         if use_beta:
             tag_name = release_info['tag_name'] # Use commit sha as tag name for beta
-            pkgs_url = f"https://raw.githubusercontent.com/TannerVoltageOfficial/voltagePyRepo/{tag_name}/pkgs.json"
+            pkgs_url = f"https://raw.githubusercontent.com/TannerVoltageOfficial/voltagePyRepo/{tag_name}/pkgs.json" # Correct URL for beta!
 
         else:
             tag_name = release_info['tag_name']
-            pkgs_url = f"https://raw.githubusercontent.com/TannerVoltageOfficial/voltagePyRepo/{tag_name}/pkgs.json"
+            pkgs_url = f"https://raw.githubusercontent.com/TannerVoltageOfficial/voltagePyRepo/{tag_name}/pkgs.json" # Correct URL for release!
 
         response = requests.get(pkgs_url)
         response.raise_for_status()
