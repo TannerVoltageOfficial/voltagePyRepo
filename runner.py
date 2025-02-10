@@ -13,7 +13,7 @@ def get_latest_release_info(repo_url, beta_flag_filepath=None):
             commits_url = repo_url.replace("github.com", "api.github.com/repos") + "/commits"
             commits_response = requests.get(commits_url)
             commits_response.raise_for_status()
-            latest_commit_sha = commits_response.json()['sha']
+            latest_commit_sha = commits_response.json()[0]['sha']
             release_info = {'tag_name': latest_commit_sha}  # Fake release info for beta
             print("Using beta version (latest commit).")
             return release_info
@@ -86,7 +86,7 @@ def main():
 
             try:
                 print("\nFirst Package:")
-                print(pkgs_data)
+                print(pkgs_data[0])
             except IndexError:
                 print("Error: pkgs.json does not contain a first element.")
             except KeyError as e:
@@ -98,4 +98,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
