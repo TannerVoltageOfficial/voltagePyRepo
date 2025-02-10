@@ -4,12 +4,13 @@ import os
 
 def get_latest_release_info(repo_url, beta_flag_filepath=None):
     """Retrieves release info, handling beta flag."""
+
     use_beta = False
     if beta_flag_filepath and os.path.exists(beta_flag_filepath):
         use_beta = True
 
-    try:
-        if use_beta:
+    if use_beta:  # Correctly use the use_beta flag here
+        try:
             commits_url = repo_url.replace("github.com", "api.github.com/repos") + "/commits"
             commits_response = requests.get(commits_url)
             commits_response.raise_for_status()
@@ -17,23 +18,29 @@ def get_latest_release_info(repo_url, beta_flag_filepath=None):
             release_info = {'tag_name': latest_commit_sha}  # Fake release info for beta
             print("Using beta version (latest commit).")
             return release_info
-
-        else:
+        except requests.exceptions.RequestException as e:
+            print(f"Error retrieving commit info: {e}")
+            return None
+        except json.JSONDecodeError as e:
+            print(f"Error decoding commit JSON: {e}")
+            return None
+        except IndexError:
+            print("Error: No commits found for beta.")
+            return None
+    else: # If use_beta is False, get the release info
+        try:
             api_url = repo_url.replace("github.com", "api.github.com/repos") + "/releases/latest"
             response = requests.get(api_url)
             response.raise_for_status()
             print("Using latest release.")
             return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error retrieving release info: {e}")
+            return None
+        except json.JSONDecodeError as e:
+            print(f"Error decoding release JSON: {e}")
+            return None
 
-    except requests.exceptions.RequestException as e:
-        print(f"Error retrieving release info: {e}")
-        return None
-    except json.JSONDecodeError as e:
-        print(f"Error decoding release JSON: {e}")
-        return None
-    except IndexError:
-        print("Error: No commits found for beta.")
-        return None
 
 def get_pkgs_json_from_release(release_info, repo_url, beta_flag_filepath=None):
     """Retrieves and parses pkgs.json from a release."""
